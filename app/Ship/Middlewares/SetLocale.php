@@ -15,11 +15,7 @@ class SetLocale
      * @return void
      */
     public function handle(Request $request, Closure $next)
-    {
-        if(! $request->user()) {
-            return $next($request);
-        }
-        
+    {   
         $language = $request->header('locale');
 
         if (!empty($language)) {
