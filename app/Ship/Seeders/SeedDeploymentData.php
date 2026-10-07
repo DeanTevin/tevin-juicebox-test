@@ -3,6 +3,7 @@
 namespace App\Ship\Seeders;
 
 use App\Ship\Parents\Seeders\Seeder;
+use App\Ship\Seeders\ActivityLogging\LogLevelSeeder;
 
 class SeedDeploymentData extends Seeder
 {
@@ -15,7 +16,7 @@ class SeedDeploymentData extends Seeder
     {
         // Create data for live deployment here
         $this->call([
-            
+            LogLevelSeeder::class,
         ]);
     }
 }
