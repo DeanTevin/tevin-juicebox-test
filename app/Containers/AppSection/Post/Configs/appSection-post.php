@@ -10,5 +10,6 @@ return [
     |
     |
     */
+    'post_length' => 100,
 
 ];

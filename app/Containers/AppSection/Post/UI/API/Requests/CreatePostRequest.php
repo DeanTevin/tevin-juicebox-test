@@ -22,7 +22,7 @@ class CreatePostRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'post' => ['required','min:10','max:'.config('appSection-post.post_length')],
         ];
     }
 

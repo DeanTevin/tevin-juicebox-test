@@ -25,6 +25,8 @@ class CreatePostAction extends ParentAction
         $data = $request->sanitizeInput([
             'post',
         ]);
+        
+        $data['user_id'] = auth()->user()->id;
 
         return $this->createPostTask->run($data);
     }

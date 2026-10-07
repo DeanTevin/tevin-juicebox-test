@@ -14,7 +14,7 @@ return new class() extends Migration {
             $table->foreignUuid('user_id')
                 ->constrained('users','id')
                 ->cascadeOnDelete();
-            $table->text('post');
+            $table->string('post',config('appSection-post.post_length'));
             $table->timestamps();
         });
     }
