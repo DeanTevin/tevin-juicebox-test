@@ -17,7 +17,7 @@ class PatchTransformer extends ParentTransformer
             'object' => $post->getResourceKey(),
             'id' => $post->getHashedKey(),
             'post_updated' => $post->post,
-            'users' => $post->user,
+            'user' => $post->user,
             'created_at' => $post->created_at,
             'updated_at' => $post->updated_at,
             'readable_created_at' => $post->created_at->diffForHumans(),
