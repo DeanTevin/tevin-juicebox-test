@@ -17,14 +17,15 @@ class UpdatePostTaskTest extends UnitTestCase
     {
         Event::fake();
         $post = PostFactory::new()->createOne();
+        auth()->setUser($post->user);
         $data = [
-            // 'some_field' => 'new_field_data',
+            'post' => 'new_field_data',
         ];
 
         $updatedPost = app(UpdatePostTask::class)->run($data, $post->id);
 
         $this->assertEquals($post->id, $updatedPost->id);
-        // $this->assertEquals($data['some_field'], $updatedPost->some_field);
+        $this->assertEquals($data['post'], $updatedPost->post);
         Event::assertDispatched(PostUpdated::class);
     }
 }

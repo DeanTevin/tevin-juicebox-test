@@ -5,6 +5,7 @@ namespace App\Containers\AppSection\User\Tests\Unit\UI\API\Requests;
 use App\Containers\AppSection\User\Models\User;
 use App\Containers\AppSection\User\Tests\UnitTestCase;
 use App\Containers\AppSection\User\UI\API\Requests\FindUserByIdRequest;
+use Illuminate\Validation\Rule;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -32,7 +33,9 @@ final class FindUserByIdRequestTest extends UnitTestCase
     {
         $rules = $this->request->rules();
 
-        $this->assertSame([], $rules);
+        $this->assertEquals( [
+            'id' => ['uuid','required', Rule::exists(User::class, 'id')],
+        ], $rules);
     }
 
     public function testAuthorizeMethodGateCall(): void

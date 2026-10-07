@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Post\Data\Factories;
 
 use App\Containers\AppSection\Post\Models\Post;
+use App\Containers\AppSection\User\Models\User;
 use App\Ship\Parents\Factories\Factory as ParentFactory;
 
 /**
@@ -17,6 +18,10 @@ class PostFactory extends ParentFactory
 
     public function definition(): array
     {
-        return [];
+        return [
+            'id' => $this->faker->uuid(),
+            'post' => $this->faker->sentence(),
+            'user_id' => User::factory(),
+        ];
     }
 }

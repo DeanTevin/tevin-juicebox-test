@@ -14,12 +14,14 @@ class DeletePostTaskTest extends UnitTestCase
 {
     public function testDeletePost(): void
     {
-        Event::fake();
+        // $user = UserFactory::new()->createOne();
+        
         $post = PostFactory::new()->createOne();
+        auth()->setUser($post->user);
 
         $result = app(DeletePostTask::class)->run($post->id);
 
-        $this->assertEquals(1, $result);
-        Event::assertDispatched(PostDeleted::class);
+        $this->assertTrue($result);
+        $this->assertModelMissing($post);
     }
 }

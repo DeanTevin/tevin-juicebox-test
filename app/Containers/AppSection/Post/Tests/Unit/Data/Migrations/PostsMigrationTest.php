@@ -11,7 +11,9 @@ class PostsMigrationTest extends UnitTestCase
     public function testPostsTableHasExpectedColumns(): void
     {
         $columns = [
-            'id' => 'bigint',
+            'id' => 'guid',
+            'user_id' => 'guid',
+            'post' => 'string',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

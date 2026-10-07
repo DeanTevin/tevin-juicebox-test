@@ -22,6 +22,10 @@
             <directory suffix=".php">./app/Containers/AppSection/User/Tests/Unit</directory>
             <directory suffix=".php">./app/Containers/AppSection/User/Tests/Functional</directory>
         </testsuite>
+        <testsuite name="Juicebox-Unit">
+            <directory suffix=".php">./app/Containers/AppSection/Post/Tests/Unit</directory>
+            <directory suffix=".php">./app/Containers/AppSection/User/Tests/Unit</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
