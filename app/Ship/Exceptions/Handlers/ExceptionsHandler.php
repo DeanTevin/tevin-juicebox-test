@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
+use Illuminate\Validation\ValidationException;
 use Laravel\Passport\Exceptions\AuthenticationException;
 use Laravel\Passport\Exceptions\OAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException as ExceptionOAuthServerException;
@@ -120,6 +121,18 @@ class ExceptionsHandler extends CoreExceptionsHandler
             return $this->buildJsonHTTPException($e);
         }
 
+        if ($e instanceof ValidationException) {
+            if (!App::isProduction() && config('app.debug')==true) {
+                return $this->buildJsonResponseGeneralException($e);
+            } else {
+                return response()->json([
+                'message' => 'Validation errors occurred.',
+                'data'    => $e->errors()
+                ], 422);
+            }
+            
+        }
+
         if ($e instanceof LaravelAuthenticationException) {
             return $this->unauthenticated($request, $e);
         }
@@ -198,7 +211,8 @@ class ExceptionsHandler extends CoreExceptionsHandler
     {
         if (!App::isProduction() && config('app.debug')==true) {
             $response = ErrorResponseHelper::ExceptionResponse($e);
-        } else {
+        } 
+        else {
             $response = [
                 'message' => $e->getMessage(),
             ];

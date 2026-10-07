@@ -27,7 +27,7 @@ class RegisterUserRequest extends ParentRequest
                 'min:5', 
                 'max:20',
                 Rule::unique(User::class,'username')],
-            'email' => 'required|email',
+            'email' => ['required','email', Rule::unique(User::class,'email')],
             'password' => [
                 'required',
                 Password::default(),
