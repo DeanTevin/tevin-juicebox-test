@@ -3,11 +3,13 @@
 namespace App\Containers\AppSection\User\Models;
 
 use App\Containers\AppSection\Authentication\Notifications\VerifyEmail;
+use App\Containers\AppSection\Post\Models\Post;
 use App\Containers\AppSection\User\Enums\Gender;
 use App\Ship\Contracts\MustVerifyEmail;
 use App\Ship\Parents\Models\UserModel as ParentUserModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Containers\AppSection\User\Models\User
@@ -131,4 +133,9 @@ class User extends ParentUserModel implements MustVerifyEmail
     protected $auditExclude = [
         'password',
     ];
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 }
