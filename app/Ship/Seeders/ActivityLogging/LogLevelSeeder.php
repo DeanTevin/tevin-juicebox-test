@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Ship\Seeders;
+namespace App\Ship\Seeders\ActivityLogging;
 
 use App\Ship\Enums\LogLevelEnums;
 use App\Ship\Parents\Seeders\Seeder as ParentSeeder;
