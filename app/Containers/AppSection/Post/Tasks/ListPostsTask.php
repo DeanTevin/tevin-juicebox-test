@@ -21,7 +21,7 @@ class ListPostsTask extends ParentTask
      */
     public function run(): mixed
     {
-        $result = $this->repository->addRequestCriteria()->paginate();
+        $result = $this->repository->addRequestCriteria()->with('user')->paginate();
         PostsListed::dispatch($result);
 
         return $result;
