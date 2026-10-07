@@ -126,7 +126,7 @@ class ExceptionsHandler extends CoreExceptionsHandler
                 return $this->buildJsonResponseGeneralException($e);
             } else {
                 return response()->json([
-                'message' => 'Validation errors occurred.',
+                'message' => $e->getMessage(),
                 'data'    => $e->errors()
                 ], 422);
             }
