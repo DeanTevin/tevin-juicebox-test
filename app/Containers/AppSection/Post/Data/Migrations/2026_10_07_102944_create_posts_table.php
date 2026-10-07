@@ -15,11 +15,6 @@ return new class() extends Migration {
                 ->constrained('users','id')
                 ->cascadeOnDelete();
             $table->text('post');
-            $table->enum('category',  [
-                CategoriesEnum::News->value,
-                CategoriesEnum::General->value,
-                CategoriesEnum::Announcement->value,
-            ]);
             $table->timestamps();
         });
     }

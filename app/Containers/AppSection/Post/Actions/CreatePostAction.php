@@ -24,7 +24,6 @@ class CreatePostAction extends ParentAction
     {
         $data = $request->sanitizeInput([
             'post',
-            'categories',
         ]);
 
         return $this->createPostTask->run($data);

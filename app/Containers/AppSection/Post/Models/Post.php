@@ -15,15 +15,10 @@ class Post extends ParentModel
     protected $fillable = [
         'user_id',
         'post',
-        'category',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $casts = [
-        'category' => CategoriesEnum::class,
-    ];
 }
