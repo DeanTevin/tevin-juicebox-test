@@ -2,7 +2,9 @@
 
 namespace App\Containers\AppSection\Post\UI\API\Requests;
 
+use App\Containers\AppSection\Post\Models\Post;
 use App\Ship\Parents\Requests\Request as ParentRequest;
+use Illuminate\Validation\Rule;
 
 class FindPostByIdRequest extends ParentRequest
 {
@@ -21,9 +23,7 @@ class FindPostByIdRequest extends ParentRequest
 
     public function rules(): array
     {
-        return [
-            // 'id' => 'required',
-        ];
+        return ['id' => ['uuid','required', Rule::exists(Post::class, 'id')],];
     }
 
     public function authorize(): bool
