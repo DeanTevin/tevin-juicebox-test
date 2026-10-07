@@ -27,7 +27,6 @@ Homestead.json
 /public/hot
 /public/storage
 /storage/*.key
-/storage/logs/
 /vendor
 .env
 .env.backup
