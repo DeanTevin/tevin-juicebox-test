@@ -5,7 +5,7 @@ namespace App\Containers\AppSection\Post\UI\API\Transformers;
 use App\Containers\AppSection\Post\Models\Post;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
-class PostTransformer extends ParentTransformer
+class PatchTransformer extends ParentTransformer
 {
     protected array $defaultIncludes = [];
 
@@ -16,8 +16,8 @@ class PostTransformer extends ParentTransformer
         return [
             'object' => $post->getResourceKey(),
             'id' => $post->getHashedKey(),
-            'post' => $post->post,
-            'user' => $post->user,
+            'post_updated' => $post->post,
+            'users' => $post->user,
             'created_at' => $post->created_at,
             'updated_at' => $post->updated_at,
             'readable_created_at' => $post->created_at->diffForHumans(),

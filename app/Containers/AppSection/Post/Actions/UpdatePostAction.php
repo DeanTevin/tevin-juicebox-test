@@ -8,7 +8,10 @@ use App\Containers\AppSection\Post\Tasks\UpdatePostTask;
 use App\Containers\AppSection\Post\UI\API\Requests\UpdatePostRequest;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Exceptions\UpdateResourceFailedException;
+use App\Ship\Monitoring\ActivityLog\Helpers\ErrorLogger;
 use App\Ship\Parents\Actions\Action as ParentAction;
+use Exception;
+use Throwable;
 
 class UpdatePostAction extends ParentAction
 {
@@ -24,10 +27,14 @@ class UpdatePostAction extends ParentAction
      */
     public function run(UpdatePostRequest $request): Post
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
+        try{$data = $request->sanitizeInput([
+            'post'
         ]);
 
         return $this->updatePostTask->run($data, $request->id);
+        }catch(Throwable|Exception $e){
+            ErrorLogger::alert('Post: Update', 'UpdatePostAction Error', get_class($this), $e);
+            throw $e;
+        }
     }
 }
