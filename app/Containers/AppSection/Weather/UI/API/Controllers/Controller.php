@@ -19,11 +19,17 @@ class Controller extends ApiController
      * @throws IncorrectIdException
      * @throws NotFoundException
      */
-    public function update(UpdateWeatherRequest $request, UpdateWeatherAction $action): array
+    public function update(UpdateWeatherRequest $request, UpdateWeatherAction $action)
     {
        $weather = $action->run($request);
 
-       return $this->transform($weather, WeatherTransformer::class);
+       return response()->json([
+        'data' => json_decode($weather),
+        'meta' => [
+            'include' => [],
+            'custom' => [],
+        ],
+       ]);
     }
 
 }

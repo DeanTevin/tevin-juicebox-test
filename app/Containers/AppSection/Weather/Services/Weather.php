@@ -64,7 +64,7 @@ class Weather
         ]);
         
         
-        return $result;
+        return $result->getBody()->getContents();
     }
 
 }

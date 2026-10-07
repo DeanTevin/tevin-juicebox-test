@@ -26,6 +26,12 @@ class ConsoleKernel extends LaravelConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        if(config('app.debug')==true){
+            $schedule->command('weather:fetch')->everyFiveSeconds();
+        }
+
+        $schedule->command('weather:fetch')->everyFifteenMinutes();
+
     }
 
     /**
