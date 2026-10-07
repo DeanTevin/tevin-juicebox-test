@@ -39,6 +39,9 @@ yarn-error.log
 /.vscode
 .env.testing
 /storage/logs/*.log
+storage/framework/cache/*
+storage/framework/views/*
+storage/framework/sessions/*
 /public/uploads/
 /laradock*/
 _ide_helper*.php
