@@ -42,6 +42,7 @@ yarn-error.log
 storage/framework/cache/*
 storage/framework/views/*
 storage/framework/sessions/*
+bootstrap/cache/*
 /public/uploads/
 /laradock*/
 _ide_helper*.php
